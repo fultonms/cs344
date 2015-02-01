@@ -1,24 +1,27 @@
 #include <iostream>
 #include <fstream>
+#include <string>
 
 using namespace std;
 
 int main(int argc, char * args[]){
 	
 	ifstream in;
-	in.open(args[0]);
+	in.open(args[1]);
 	
 	int length;	
-	int input;
 	
-	length= in.getline();
-	cout <<length;
+	in >> length;
+	cout <<length<<endl;
 
-	for(int i=0; i < length; i++){
-		in >> input;
-		cout<<input<<" ";
+	int input[length];
+
+	for(int i=0; i< length; i++){
+		in >> input[i];
+		cout << input[i]<<" ";
 	}
-	cout<< endl;
+
+	cout<<endl;
 	
 
 	in.close();
