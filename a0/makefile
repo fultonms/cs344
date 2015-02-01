@@ -1,5 +1,7 @@
 all:
 	g++ my_rec_minmax.cpp -o recminmax
-
-clean: rm recminmax iterminmax
+	g++ my_iter_minmax.cpp -o iterminmax
+clean: 
+	rm recminmax
+	rm iterminmax
 	
