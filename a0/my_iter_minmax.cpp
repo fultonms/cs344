@@ -1,3 +1,8 @@
+/*
+AUTHOR: Michael Fulton
+DATE: 2/2/15
+*/
+
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -8,16 +13,19 @@ void minmax(int[], int);
 
 int main(int argc, char * args[]){
 	
+	//File I/O setup.
 	ifstream in;
 	in.open(args[1]);
 	
-	int length;	
-	
+
+	//Read in number of numbers we're using.
+	int length;		
 	in >> length;
 	cout <<length<<endl;
 
-	int input[length];
 
+	//Read in actual numbers.
+	int input[length];
 	for(int i=0; i< length; i++){
 		in >> input[i];
 	}
@@ -36,6 +44,10 @@ void minmax(int numbers[], int len){
 	int min=numbers[0];
 	int count=0;
 	
+	//If the current number is bigger than the max, make it the new max.  
+	//If it isn't, see if it's smaller than the min.  If it is, it's the new min.
+	//Since we don't test min until we know it's not max, we CAN save cost operations.
+	//This algorithm's worst case is 2N-2.
 	for(int i=1; i < len; i++){
 		count++;
 		if(numbers[i] > max){
