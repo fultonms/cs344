@@ -12,17 +12,14 @@ int main(int argc, char * args[]){
 	int length;	
 	
 	in >> length;
-	cout <<length<<endl;
 
 	int input[length];
 
 	for(int i=0; i< length; i++){
 		in >> input[i];
-		cout << input[i]<<" ";
 	}
-
-	cout<<endl;
 	
+
 
 	in.close();
 

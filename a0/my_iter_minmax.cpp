@@ -37,14 +37,18 @@ void minmax(int numbers[], int len){
 	int count=0;
 	
 	for(int i=1; i < len; i++){
+		count++;
 		if(numbers[i] > max){
 			max = numbers[i];
 		}	
 
-		if(numbers[i] < min){
-			min = numbers[i];
+		else {
+			count++;
+			if(numbers[i] < min){
+				min = numbers[i];
+			}	
 		}
-		count +=2;
+		
 	}
 
 	cout<<"The max is: "<<max<<"."<<endl;
