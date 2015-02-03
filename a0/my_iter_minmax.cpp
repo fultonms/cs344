@@ -43,7 +43,24 @@ void minmax(int numbers[], int len){
 	int max=numbers[0];
 	int min=numbers[0];
 	int count=0;
-	
+
+	if(len==1){
+		max=numbers[0];
+		min=numbers[0];
+		return;
+	}
+	else if(len==2){
+		if(numbers[0] > numbers[1]){
+			max= numbers[0];
+			min= numbers[1];
+		}
+		else{
+			max= numbers[1];
+			min= numbers[0];
+		}
+		return;
+	}
+
 	//If the current number is bigger than the max, make it the new max.  
 	//If it isn't, see if it's smaller than the min.  If it is, it's the new min.
 	//Since we don't test min until we know it's not max, we CAN save cost operations.
@@ -53,7 +70,6 @@ void minmax(int numbers[], int len){
 		if(numbers[i] > max){
 			max = numbers[i];
 		}	
-
 		else {
 			count++;
 			if(numbers[i] < min){
