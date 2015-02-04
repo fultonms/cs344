@@ -1,10 +1,10 @@
 #include <iostream>
 #include <fstream>
-#include <string>
+#include <assert.h>
 
 using namespace std;
 
-void minmax(int, int [], int, int &, int &, int &);
+void minmax(int [], int, int &, int &, int &);
 
 int main(int argc, char * args[]){
 	
@@ -20,12 +20,14 @@ int main(int argc, char * args[]){
 	for(int i=0; i< length; i++){
 		in >> input[i];
 	}
+
 	
-	int min=input[0];
-	int max=input[0];
 	int count = 0;
-	minmax(1, input, length, min, max, count);
-	
+	int min=0;
+	int max=0;
+
+	minmax(input, length, min, max, count);
+
 	cout<<"The max is: "<<max<<"."<<endl;
 	cout<<"The min is: "<<min<<"."<<endl;
 	cout<<"The number of count operations is: "<<count<<"."<<endl;
@@ -35,28 +37,56 @@ int main(int argc, char * args[]){
 
 }
 
-void minmax(int i, int numbers[], int len, int & min, int & max, int & count){
+void minmax(int input[], int len, int & min, int & max, int & count){
 
-	if(i==len)
+	assert(len >0);
+	
+	if(len == 1){
+		max=min=input[0];
 		return;
-	else{
-		count++;
-		if(numbers[i] > max){
-			max=numbers[i];
+	}
+	else if(len == 2){
+		count ++; 
+		if(input[0] >input[1]){
+			max= input[0];
+			min = input[1];
 		}
 		else{
-			count ++;
-			if(numbers[i]< min){
-				min=numbers[i];
-			}
-
+			max=input[1];
+			min=input[0];
 		}
-
+		return;
 	}
-	i++;
-	minmax(i, numbers, len, min, max, count);
-	return;
+	
+	int leftmin, leftmax;
+	int leftlen = len/2;
+
+	minmax(input, leftlen, leftmin, leftmax, count);
+
+	int rightmin, rightmax;
+	int rightlen= len-leftlen;
+	int temp[rightlen];
+
+	for(int i=0; i <rightlen; i++){
+		temp[i]=input[leftlen+i];
+	}
+
+	minmax(temp, rightlen, rightmin, rightmax, count);
+
+	count++;
+	if(leftmin < rightmin){
+		min = leftmin;
+	}
+	else{
+		min = rightmin;
+	}
+
+	count++;
+	if(leftmax >rightmax){
+		max=leftmax;
+	}
+	else{
+		max=rightmax;
+	}
+
 }
-
-
-

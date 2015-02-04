@@ -21,7 +21,6 @@ int main(int argc, char * args[]){
 	//Read in number of numbers we're using.
 	int length;		
 	in >> length;
-	cout <<length<<endl;
 
 
 	//Read in actual numbers.
