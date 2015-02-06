@@ -17,9 +17,8 @@ int main(){
 	
 	srand (time(NULL));
 
-	ofstream iterout, recout;
-	iterout.open("iterout.dat");
-	recout.open("recout.dat");
+	ofstream out;
+	out.open("out.dat");
 	
 	for(int i=1; i<1000; i++){
 		int array[i];
@@ -32,12 +31,10 @@ int main(){
 
 		Icount=iterminmax(array, len);
 		recminmax(array, len, min, max, Rcount);
-		iterout<<Icount<<" ";
-		recout<<Rcount<<" ";
+		out<<Icount<<"	"<<Rcount<<endl;;
 	}
 
-	iterout.close();
-	recout.close();
+	out.close();
 		
 	return 0;
 		
