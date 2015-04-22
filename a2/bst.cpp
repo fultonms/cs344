@@ -2,6 +2,7 @@ using namespace std;
 
 template <class T>
 BST<T>* BST<T>::insert(const T &v){
+	//The value should be inserted to the right.
 	if(this->getValue() < v){
 		if(this->getRight() == NULL){
 			this->setRight(new BST<T>(v, NULL, NULL, this));
@@ -11,6 +12,8 @@ BST<T>* BST<T>::insert(const T &v){
 			this->setRight(right->insert(v));	
 		}
 	}
+
+	//The value should be inserted to the left.
 	else if(this->getValue() > v){
 		if(this->getLeft() == NULL){
 			this->setLeft( new BST<T>(v, NULL, NULL, this));
@@ -27,16 +30,23 @@ BST<T>* BST<T>::insert(const T &v){
 template <class T>
 BST<T>* BST<T>::search(const T &v){
 
+	//Here is the value;
 	if(this->getValue() == v)
 		return this;
+
+	//It's to the left.
 	else if(this->getValue() > v && this->getLeft() != NULL){
 		BST<T>* left = dynamic_cast<BST<T>*>(this->getLeft());
 		return left->search(v);
 	}
+
+	//It's to the right;
 	else if(this->getValue() < v && this->getRight() != NULL){	
 		BST<T>* right = dynamic_cast<BST<T>*>(this->getRight());
 		return right->search(v);
 	}
+
+	//That value isn't in the tree.
 	else 
 		return NULL;
 }

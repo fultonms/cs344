@@ -19,7 +19,7 @@ public:
 
 
 	// unvirtualized utilities
-	BST<T> * search( const T &v );	
+	BST<T> * search( const T &v );
 		// returns pointer to node (containing value, if exists) or NULL (otherwise)
 
 	BST<T> * insert( const T &v );	
