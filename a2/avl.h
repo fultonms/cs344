@@ -42,6 +42,9 @@ public:
 	AVL<T> * balance();		
 		// rebalance tree
 
+	AVL<T>* rotateR();
+	AVL<T>* rotateL();
+
 	void updateHeight();	
 		// recompute heights of all nodes in tree
 

@@ -72,14 +72,14 @@ AVL<T> * AVL<T>::remove( const T &v ){
                                 if(parent->getRight() == this){
                                         parent->setRight(NULL);
                                         delete this;
-                                        return parent;
+                                        return parent->balance();
                                 }
 
                                 //This node is a left child.
                                 else if(parent->getLeft() == this){
                                         parent->setLeft(NULL);
                                         delete this;
-                                        return parent;
+                                        return parent->balance();
                                 }
 
                                 ///Something's gone horribly wrong.
@@ -192,42 +192,14 @@ AVL<T> * AVL<T>::balance(){
 
 		//Double Right Rotation
 		if(left->heightDifference() > 1){
-
-			//Left Rotation on left
-			AVL<T>* parentL = dynamic_cast<AVL<T>*>(left->getParent());	
-			AVL<T>* rightL =dynamic_cast<AVL<T>*>(left->getRight());
-			AVL<T>* rightLeftL = dynamic_cast<AVL<T>*>(rightL->getLeft());
-
-			rightL->setParent(parentL);
-			rightL->setLeft(left);
-			left->setParent(rightL);
-			left->setLeft(rightLeftL);
-
-			//Right rotation on this
-
-			AVL<T>* parent = dynamic_cast<AVL<T>*>(this->getParent());	
-			AVL<T>* leftRight = dynamic_cast<AVL<T>*>(left->getRight());
-		
-			left->setParent(parent);
-			left->setRight(this);
-			this->setParent(left);
-			this->setLeft(leftRight);
-
-			return left;
-
+			left->rotateL();
+			return this->rotateR();
 		}
 
 		//Single Right Rotation
 		else{
-			AVL<T>* parent = dynamic_cast<AVL<T>*>(this->getParent());
-			AVL<T>* leftRight = dynamic_cast<AVL<T>*>(left->getRight());
-
-			left->setParent(parent);
-			left->setRight(this);
-			this->setParent(left);
-			this->setLeft(leftRight);
-
-			return left;
+			return this->rotateR();
+			
 		}
 	}
 	
@@ -237,46 +209,50 @@ AVL<T> * AVL<T>::balance(){
 
 		//Double Left Rotation
 		if(right->heightDifference() < -1){
-			//Right rotation on right
-			AVL<T>* parentR = dynamic_cast<AVL<T>*>(right->getParent());
-			AVL<T>* leftR = dynamic_cast<AVL<T>*>(right->getLeft());
-			AVL<T>* leftRightR =dynamic_cast<AVL<T>*>(leftR->getRight());
-
-			leftR->setParent(parentR);
-			leftR->setRight(right);
-			right->setParent(leftR);
-			right->setLeft(leftRightR);
-
-			//Left rotation on this.
-
-			AVL<T>* parent = dynamic_cast<AVL<T>*>(this->getParent());
-			AVL<T>* rightLeft = dynamic_cast<AVL<T>*>(right->getLeft());
-
-			right->setParent(parent);
-			right->setLeft(this);
-			this->setParent(right);
-			this->setRight(rightLeft);
-	
-			return right;
+			right->rotateR();
+			return this->rotateL();
+			
 		}
 
 		//Single Left Rotation
 		else{
-			AVL<T>* parent = dynamic_cast<AVL<T>*>(this->getParent());
-			AVL<T>* rightLeft = dynamic_cast<AVL<T>*>(right->getLeft());
-	
-			right->setParent(parent);
-			right->setLeft(this);
-			this->setParent(right);
-			this->setRight(rightLeft);
-			
-			return right;
+			return this->rotateL();
 		}
 	}
 
 	else 
 		return this;
 	
+}
+
+
+template<class T>
+AVL<T>* AVL<T>::rotateR(){
+	AVL<T>* left = dynamic_cast<AVL<T>*>(this->getLeft());
+	AVL<T>* parent = dynamic_cast<AVL<T>*>(this->getParent());
+        AVL<T>* leftRight = dynamic_cast<AVL<T>*>(left->getRight());
+
+        left->setParent(parent);
+        left->setRight(this);
+        this->setParent(left);
+        this->setLeft(leftRight);
+
+        return left;
+}
+
+template<class T>
+AVL<T>* AVL<T>::rotateL(){
+	AVL<T>* right = dynamic_cast<AVL<T>*>(this->getRight());
+	AVL<T>* parent = dynamic_cast<AVL<T>*>(this->getParent());
+        AVL<T>* rightLeft = dynamic_cast<AVL<T>*>(right->getLeft());
+
+        right->setParent(parent);
+        right->setLeft(this);
+        this->setParent(right);
+        this->setRight(rightLeft);
+
+        return right;
+
 }
 
 template <class T>
