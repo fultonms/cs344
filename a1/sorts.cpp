@@ -122,33 +122,33 @@ void mergesort( int array[], const int begin,  const int end )
 
 void my_qsort(int array[], int size, int (*choose_pivot)(int [], int)){
 	quicksort(array, 1, size, (*choose_pivot));
-//	for(int i=0; i<size; i++)
-//		cerr<<array[i]<<" ";
-//	cerr<<endl;
 }
 
 void quicksort(int array[], int low, int high, int(*choose_pivot)(int [], int)){
 	if(low < high){
 		int p = part(array, low, high, (*choose_pivot));
-		quicksort(array, low, p-1, (*choose_pivot));
+		quicksort(array, low, p, (*choose_pivot));
 		quicksort(array, p+1 , high, (*choose_pivot));	
 	}
 }
 
 int part(int array[], int low, int high, int(*choose_pivot)(int [], int)){
-	int pivot = (*choose_pivot)(array, (high- low));
+	int pivot = (*choose_pivot)(array, (high-low));
+	cerr<<"PIVOT="<<pivot<<endl;
 	int pivotValue = array[pivot];
 
 	swap(array[pivot], array[high]);
 	int storeIndex = low;
+
 	for(int i=low; i<=high-1; i++){
 		if(array[i] <= pivotValue){
 			swap(array[i], array[storeIndex]);
 			storeIndex++;
 		}
 	}
+
 	swap(array[storeIndex], array[high]);
-	return storeIndex;
+	return pivot;
 }
 
 // median finder

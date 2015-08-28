@@ -17,9 +17,13 @@ int main(){
 	
 	srand (time(NULL));
 
-	ofstream out;
-	out.open("out.dat");
-	
+	ofstream iter, rec;
+	iter.open("iter.dat");
+	rec.open("rec.dat");
+
+	iter <<"# X Y"<<endl;
+	rec <<"# X Y"<<endl;
+
 	for(int i=1; i<1000; i++){
 		int array[i];
 		len=i;
@@ -31,10 +35,13 @@ int main(){
 
 		Icount=iterminmax(array, len);
 		recminmax(array, len, min, max, Rcount);
-		out<<Icount<<"	"<<Rcount<<endl;;
+		iter<<" "<<i<<" "<<Icount<<endl;
+		rec<<" "<<i<<" "<<Rcount<<endl;
+		
 	}
 
-	out.close();
+	iter.close();
+	rec.close();
 		
 	return 0;
 		

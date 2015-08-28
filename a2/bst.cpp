@@ -1,3 +1,9 @@
+/*
+CS344 A2 Michael Fulton and David Josephs
+
+Binary Search Trees
+*/
+
 using namespace std;
 
 template <class T>

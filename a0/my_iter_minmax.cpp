@@ -49,6 +49,7 @@ void minmax(int numbers[], int len){
 		return;
 	}
 	else if(len==2){
+		count++;
 		if(numbers[0] > numbers[1]){
 			max= numbers[0];
 			min= numbers[1];
@@ -77,8 +78,5 @@ void minmax(int numbers[], int len){
 		}
 		
 	}
-
-	cout<<"The max is: "<<max<<"."<<endl;
-	cout<<"The min is: "<<min<<"."<<endl;
-	cout<<"The number of array element comparisons is: "<<count<<"."<<endl;
+	cout<<len<<" "<<min<<" "<<max<<" "<<count<<endl;
 }

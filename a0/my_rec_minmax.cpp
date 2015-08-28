@@ -1,3 +1,8 @@
+/*
+Author: Michael Fulton
+Date: 2/2/15
+*/
+
 #include <iostream>
 #include <fstream>
 #include <assert.h>
@@ -8,6 +13,7 @@ void minmax(int [], int, int &, int &, int &);
 
 int main(int argc, char * args[]){
 	
+	//File I/O Setup.
 	ifstream in;
 	in.open(args[1]);
 	
@@ -16,7 +22,8 @@ int main(int argc, char * args[]){
 	in >> length;
 
 	int input[length];
-
+	
+	//Read in the array.
 	for(int i=0; i< length; i++){
 		in >> input[i];
 	}
@@ -26,11 +33,9 @@ int main(int argc, char * args[]){
 	int min=0;
 	int max=0;
 
+	//Compute min and max, then print out.
 	minmax(input, length, min, max, count);
-
-	cout<<"The max is: "<<max<<"."<<endl;
-	cout<<"The min is: "<<min<<"."<<endl;
-	cout<<"The number of count operations is: "<<count<<"."<<endl;
+	cout<<length<<" "<<min<<" "<<max<<" "<<count<<endl;
 
 	in.close();
 
@@ -39,12 +44,16 @@ int main(int argc, char * args[]){
 
 void minmax(int input[], int len, int & min, int & max, int & count){
 
+	//Make sure the array is not empty.
 	assert(len >0);
 	
+	//If it's an array with one element, it's both the min and max.
 	if(len == 1){
 		max=min=input[0];
 		return;
 	}
+
+	//If the array has two elements, do a simple comparison.
 	else if(len == 2){
 		count ++; 
 		if(input[0] >input[1]){
@@ -58,6 +67,7 @@ void minmax(int input[], int len, int & min, int & max, int & count){
 		return;
 	}
 	
+	//Otherwise, split the array into two halves, and compute minmax on them.
 	int leftmin, leftmax;
 	int leftlen = len/2;
 
@@ -67,6 +77,7 @@ void minmax(int input[], int len, int & min, int & max, int & count){
 	int rightlen= len-leftlen;
 	int temp[rightlen];
 
+	//Initializing the new array.
 	for(int i=0; i <rightlen; i++){
 		temp[i]=input[leftlen+i];
 	}
@@ -74,6 +85,8 @@ void minmax(int input[], int len, int & min, int & max, int & count){
 	minmax(temp, rightlen, rightmin, rightmax, count);
 
 	count++;
+
+	//Reconcile the min and maxes from the two different halves.
 	if(leftmin < rightmin){
 		min = leftmin;
 	}

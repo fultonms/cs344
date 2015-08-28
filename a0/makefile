@@ -6,4 +6,5 @@ clean:
 	rm recminmax
 	rm iterminmax
 	rm test
-	rm out.dat
+	rm iter.dat
+	rm rec.dat

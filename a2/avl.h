@@ -37,13 +37,14 @@ public:
 	AVL<T> * remove( const T &v );
 		// returns pointer updated tree (no longer containing v)
 
+	void rotateR();
+	
+	void rotateL();
+
 
 	// little helpers
 	AVL<T> * balance();		
 		// rebalance tree
-
-	AVL<T>* rotateR();
-	AVL<T>* rotateL();
 
 	void updateHeight();	
 		// recompute heights of all nodes in tree

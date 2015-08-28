@@ -223,11 +223,18 @@ main( int argc, char *argv[] )
 #endif
 
 		// check the value
+		cerr<<boo<<" Value=";
+		if(boo != NULL)
+			cerr<<boo->getValue();
+		else
+			cerr<<"NULL";
+		cerr<<" Expected="<<array[i]<<endl;
+
 		assert( boo != NULL && array[i] == boo->getValue() );	
 
 		// check tree is in-order
 		vec_array.clear();
-		root->inOrder( vec_array );	
+		root->inOrder( vec_array );
 		is_sorted( vec_array );
 
 		// check height of tree
@@ -257,7 +264,7 @@ main( int argc, char *argv[] )
 
 		// check tree is in-order
 		vec_array.clear();
-		root->inOrder( vec_array );	
+		root->inOrder( vec_array );
 		is_sorted( vec_array );
 
 		// check height of tree
@@ -285,7 +292,7 @@ main( int argc, char *argv[] )
 		{ 
 			// check tree is in-order
 			vec_array.clear();
-			root->inOrder( vec_array );	
+			root->inOrder( vec_array );
 			is_sorted( vec_array );
 
 			// calculate height of tree

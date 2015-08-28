@@ -43,9 +43,6 @@ main(int argc, char *argv[])
 	// get size 
 	int total_size = atoi(argv[1]);
 	
-	cout<<"S M I S B"<<endl;
-	cout<<"-----------------"<<endl;
-
 	for (int size = 1; size < total_size; size++) {
 		// allocate array
 		int test_array[size];
@@ -54,31 +51,32 @@ main(int argc, char *argv[])
 		}
 		shuffle(test_array, size);
 
-//		cout << size << " ";
+		cout << size << " ";
 
 		int array[size];
-/*
+
 		// testing mergesort
 		cost = 0;
 		copy(test_array, array, size);
 		msort(array, size);
 		is_sorted(array, size);
 		cout << cost << " ";
-*/
-		// testing quicksort (with random pivot)
+
+/*		// testing quicksort (with random pivot)
 		cost = 0;
 		copy(test_array, array, size);
 		my_qsort(array, size, random_pivot);
-//		is_sorted(array, size);
-//		cout << cost << " ";
-/*
+		show(array, size);
+		//is_sorted(array, size);
+		cout << cost << " ";
+
 		// testing quicksort (with median pivot)
 		cost = 0;
 		copy(test_array, array, size);
 		my_qsort(array, size, median_pivot);
 		is_sorted(array, size);
 		cout << cost << " ";
-
+*/
 		// testing insertion sort
 		cost = 0;
 		copy(test_array, array, size);
@@ -99,7 +97,7 @@ main(int argc, char *argv[])
 		bsort(array, size);
 		is_sorted(array, size);
 		cout << cost << " ";
-*/
+
 		cout << endl;
 	}
 }

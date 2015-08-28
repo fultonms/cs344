@@ -52,6 +52,15 @@ public:
 	Splay<T> * remove( const T &v );	
 		// returns pointer to updated tree (after deletion): root contains parent
 
+	Splay<T> * splayTree();
+	// splays the value to the top of the tree
+
+	Splay<T> * add(const T & v);
+
+	Splay<T> * find(const T & v);
+
+	Splay<T> * takeout(const T &v);
+
 
 	void splay();
 		// perform a splay operation on tree
